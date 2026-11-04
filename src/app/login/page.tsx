@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LoginForm } from "@/features/auth/login-form";
 import { KeycloakLoginButton } from "@/features/auth/keycloak-login-button";
@@ -31,6 +32,19 @@ export default async function LoginPage({
   const showLegacyForm =
     !keycloakOn || (legacyRequested && isLegacyLoginEnabled());
   const errorMessage = loginErrorMessage(params.error);
+
+  // Com Keycloak ativo, pula esta tela. Ela só aparece quando há algo a mostrar
+  // ou no plano B (?legacy=1); erro e sessão expirada ficam aqui para evitar loop.
+  if (
+    keycloakOn &&
+    !legacyRequested &&
+    !params.error &&
+    !sessionExpired &&
+    !justRegistered &&
+    !justReset
+  ) {
+    redirect("/api/auth/keycloak-login");
+  }
 
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-16">
