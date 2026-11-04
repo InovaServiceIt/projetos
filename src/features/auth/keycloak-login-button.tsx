@@ -18,7 +18,7 @@ export function KeycloakLoginButton() {
         });
       }}
     >
-      {pending ? "Redirecionando..." : "Entrar com KBO (Keycloak)"}
+      {pending ? "Redirecionando..." : "Entrar com Service IT"}
     </Button>
   );
 }
