@@ -59,9 +59,6 @@ export async function loginAction(
   }
 }
 
-export async function keycloakSignInAction() {
-  await signIn("keycloak", { redirectTo: "/dashboard" });
-}
 
 export async function signupAction(): Promise<ActionResult> {
   return {

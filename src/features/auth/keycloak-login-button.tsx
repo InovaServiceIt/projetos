@@ -1,24 +1,12 @@
-"use client";
-
-import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
-import { keycloakSignInAction } from "@/features/auth/actions";
 
+/** Navegação completa: a rota garante que o login comece no domínio do AUTH_URL. */
 export function KeycloakLoginButton() {
-  const [pending, startTransition] = useTransition();
-
   return (
-    <Button
-      type="button"
-      className="w-full"
-      disabled={pending}
-      onClick={() => {
-        startTransition(async () => {
-          await keycloakSignInAction();
-        });
-      }}
-    >
-      {pending ? "Redirecionando..." : "Entrar com Service IT"}
-    </Button>
+    <form action="/api/auth/keycloak-login">
+      <Button type="submit" className="w-full">
+        Entrar com Service IT
+      </Button>
+    </form>
   );
 }
