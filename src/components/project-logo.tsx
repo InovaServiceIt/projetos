@@ -41,7 +41,7 @@ export function ProjectLogo({
         alt=""
         className={cn(
           dims,
-          "shrink-0 bg-background object-contain p-1.5 ring-1 ring-border",
+          "shrink-0 bg-white object-contain ring-1 ring-border",
           className,
         )}
       />
